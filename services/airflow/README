@@ -1,0 +1,5 @@
+Add the following to your /etc/hosts:
+echo "$(dig +short <NLB DNS>) test.devops-workshop.com."
+
+navigate:
+http://test.devops-workshop.com
