@@ -32,7 +32,6 @@ inputs = {
   tags = {
     Terraform   = "true"
     Environment = "atlantis"
-    USER        = "leo"
   }
 }
 
