@@ -1,3 +1,7 @@
+include "vpc" {
+  path = "${dirname(get_repo_root())}/${basename(get_repo_root())}/modules/vpc/terragrunt.hcl"
+}
+
 locals {
   env_vars = read_terragrunt_config(get_path_to_repo_root())
 }
