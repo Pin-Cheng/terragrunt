@@ -49,4 +49,8 @@ remote_state {
   )
 }
 
+inputs = {
+  desired_count = 1
+}
+
 generate = local.env_vars.generate
