@@ -1,13 +1,38 @@
 include "vpc" {
-  path = find_in_parent_folders()
+  path = "${dirname(get_repo_root())}/${basename(get_repo_root())}/modules/vpc/terragrunt.hcl"
 }
 
 locals {
-  enabled = false
+  env_vars = read_terragrunt_config(get_path_to_repo_root())
 }
 
 inputs = {
-  desired_count = 1
+  name = local.env_vars.locals.cluster_name
+  cidr = local.env_vars.locals.cidr
+
+  azs             = local.env_vars.locals.azs
+  private_subnets = local.env_vars.locals.private_subnets
+  public_subnets  = local.env_vars.locals.public_subnets
+
+  enable_nat_gateway = true
+  enable_vpn_gateway = true
+
+  private_subnet_tags = {
+    Tier                                                          = "Private"
+    "kubernetes.io/role/internal-elb"                             = 1
+    "kubernetes.io/cluster/${local.env_vars.locals.cluster_name}" = "owned"
+  }
+
+  public_subnet_tags = {
+    "kubernetes.io/role/elb"                                      = 1
+    "kubernetes.io/cluster/${local.env_vars.locals.cluster_name}" = "owned"
+  }
+
+  tags = {
+    Terraform   = "true"
+    Environment = "atlantis"
+    local       = "mac"
+  }
 }
 
 remote_state {
@@ -15,6 +40,13 @@ remote_state {
     path      = "backend.tf"
     if_exists = "overwrite_terragrunt"
   }
-  backend = devops-workshop-dadd30a3-7b5e-4c7e-baca-9804ce726d09
-  key = "default/infra/vpc/terraform.tfstate"
+  backend = local.env_vars.remote_state.backend
+  config = merge(
+    local.env_vars.remote_state.config,
+    {
+      key = "${local.env_vars.locals.cluster_full_name}/${basename(get_repo_root())}/${get_path_from_repo_root()}/terraform.tfstate"
+    },
+  )
 }
+
+generate = local.env_vars.generate
