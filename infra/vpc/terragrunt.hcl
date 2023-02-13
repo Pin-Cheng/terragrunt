@@ -7,6 +7,7 @@ locals {
 }
 
 inputs = {
+  desired_count = 1
   name = local.env_vars.locals.cluster_name
   cidr = local.env_vars.locals.cidr
 
@@ -47,10 +48,6 @@ remote_state {
       key = "${local.env_vars.locals.cluster_full_name}/${basename(get_repo_root())}/${get_path_from_repo_root()}/terraform.tfstate"
     },
   )
-}
-
-inputs = {
-  desired_count = 1
 }
 
 generate = local.env_vars.generate
