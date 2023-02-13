@@ -1,7 +1,3 @@
-include "vpc" {
-  path = "${dirname(get_repo_root())}/${basename(get_repo_root())}/modules/vpc/terragrunt.hcl"
-}
-
 locals {
   enabled = false
 }
