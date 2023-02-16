@@ -6,11 +6,11 @@ projects:
   autoplan:
     when_modified: ["**/*.hcl", "**/*.tf*"]
   vault:
-  url: http://127.0.0.1:8200
-  auth:
-    method: token
-    token: "{{ file `~/.vault-token` }}"
-  aws_secret_path: aws/roles/atlantis
+    url: http://127.0.0.1:8200
+    auth:
+      method: token
+      token: "{{ file `~/.vault-token` }}"
+    aws_secret_path: aws/roles/atlantis
 
 # - name: central-iam-roles
 #   dir: central/basic/iam-roles
