@@ -5,6 +5,10 @@ projects:
   dir: infra/vpc
   autoplan:
     when_modified: ["**/*.hcl", "**/*.tf*"]
+  workspace:
+    name: "{{ .ProjectName }}-{{ .Workspace }}-{{ epoch }}"
+    destroy_on_apply: true
+  terraform_version: "1.2.9"
   vault:
     address: "https://127.0.0.1:8200"
     auth:
@@ -16,6 +20,25 @@ projects:
       max_retries: 3
       backoff: "exponential"
       backoff_factor: 1.5
+
+# old setup
+# version: 3
+# projects:
+# - name: vpc
+#   dir: infra/vpc
+#   autoplan:
+#     when_modified: ["**/*.hcl", "**/*.tf*"]
+#   vault:
+#     address: "https://127.0.0.1:8200"
+#     auth:
+#       method: "token"
+#       token: "{{ file `~/.vault-token` }}"
+#     aws:
+#       role: "atlantis"
+#       session_ttl: "1h"
+#       max_retries: 3
+#       backoff: "exponential"
+#       backoff_factor: 1.5
 
 # - name: central-iam-roles
 #   dir: central/basic/iam-roles
