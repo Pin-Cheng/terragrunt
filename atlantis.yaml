@@ -6,7 +6,7 @@ projects:
   autoplan:
     when_modified: ["**/*.hcl", "**/*.tf*"]
   vault:
-    url: http://vault.example.com:8200
+    url: http://127.0.0.1:8200
     auth:
       method: token
       token: "{{ file `~/.vault-token` }}"
