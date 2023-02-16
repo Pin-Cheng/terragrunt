@@ -31,7 +31,6 @@ inputs = {
   tags = {
     Terraform   = "true"
     Environment = "atlantis"
-    local       = "mac"
   }
 }
 
