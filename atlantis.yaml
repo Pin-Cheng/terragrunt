@@ -5,11 +5,11 @@ projects:
   dir: infra/vpc
   autoplan:
     when_modified: ["**/*.hcl", "**/*.tf*"]
-  aws:
-    vault:
-      address: http://127.0.0.1:8200
-      aws_secrets_engine_path: "aws"
-      role: "atlantis"
+  vault:
+    url: http://vault.example.com:8200
+    auth:
+      method: token
+      token: "{{ file `~/.vault-token` }}"
 
 # - name: central-iam-roles
 #   dir: central/basic/iam-roles
