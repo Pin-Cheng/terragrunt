@@ -5,9 +5,6 @@ projects:
   dir: infra/vpc
   autoplan:
     when_modified: ["**/*.hcl", "**/*.tf*"]
-  workspace:
-    name: "{{ .ProjectName }}-{{ .Workspace }}-{{ epoch }}"
-    destroy_on_apply: true
 
 # old setup
 # version: 3
