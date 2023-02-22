@@ -2,7 +2,7 @@
 terraform {
   required_version = "~> 1.2.6"
   backend "s3" {
-    bucket         = "devops-workshop-dadd30a3-7b5e-4c7e-baca-9804ce726d09"
+    bucket         = "devops-workshop-6d37f2e2-82f9-4ac4-b788-6dbde238553b"
     key            = "devops-us-east-1.k8s.local/terragrunt/terraform.tfstate"
     region         = "us-east-1"
   }
