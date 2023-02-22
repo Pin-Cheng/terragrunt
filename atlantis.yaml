@@ -5,25 +5,7 @@ projects:
   dir: infra/vpc
   autoplan:
     when_modified: ["**/*.hcl", "**/*.tf*"]
-
-# old setup
-# version: 3
-# projects:
-# - name: vpc
-#   dir: infra/vpc
-#   autoplan:
-#     when_modified: ["**/*.hcl", "**/*.tf*"]
-#   vault:
-#     address: "https://127.0.0.1:8200"
-#     auth:
-#       method: "token"
-#       token: "{{ file `~/.vault-token` }}"
-#     aws:
-#       role: "atlantis"
-#       session_ttl: "1h"
-#       max_retries: 3
-#       backoff: "exponential"
-#       backoff_factor: 1.5
+  workflow: dev
 
 # - name: central-iam-roles
 #   dir: central/basic/iam-roles
