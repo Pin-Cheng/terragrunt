@@ -5,6 +5,7 @@ projects:
   dir: infra/vpc
   autoplan:
     when_modified: ["**/*.hcl", "**/*.tf*"]
+  workflow: dev
 
 # - name: central-iam-roles
 #   dir: central/basic/iam-roles

@@ -14,8 +14,8 @@ inputs = {
   private_subnets = local.env_vars.locals.private_subnets
   public_subnets  = local.env_vars.locals.public_subnets
 
-  enable_nat_gateway = true
-  enable_vpn_gateway = true
+  enable_nat_gateway = false
+  enable_vpn_gateway = false
 
   private_subnet_tags = {
     Tier                                                          = "Private"
@@ -30,7 +30,8 @@ inputs = {
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
+    Environment = "atlantis"
+    USER       = "leo"
   }
 }
 
